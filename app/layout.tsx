@@ -1,6 +1,7 @@
 "use client";
 
 import { ChakraProvider } from "@chakra-ui/react";
+import AppContext from "./materials/context/appContext";
 
 export default function RootLayout({
   children,
@@ -11,9 +12,12 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <title>Daniel | Home</title>
+        <link rel="icon" type="image/x-icon" href="/white_logo.svg" />
       </head>
       <body>
-        <ChakraProvider>{children}</ChakraProvider>
+        <AppContext>
+          <ChakraProvider>{children}</ChakraProvider>
+        </AppContext>
       </body>
     </html>
   );
