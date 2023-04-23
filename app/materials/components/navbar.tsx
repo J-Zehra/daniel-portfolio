@@ -11,7 +11,7 @@ function Navbar(props: NavItems): ReactElement {
   const [isSmallerThan850] = useMediaQuery("(max-width: 48em)");
 
   return (
-    <Box w="100%" pos="fixed" h="5rem">
+    <Box w="100%" pos="fixed" h="5rem" bg="palette.secondary">
       <Flex
         justifyContent="space-between"
         alignItems="center"
@@ -21,7 +21,7 @@ function Navbar(props: NavItems): ReactElement {
       >
         {/* LOGO */}
         <Link href="/">
-          <Image src={logo} alt="logo" width={500} height={500} />
+          <Image src={logo} alt="logo" width={500} height={500} style={{width: "2.5rem"}} />
         </Link>
         {/* NAVIGATION LINKS */}
         {isSmallerThan850 ? (

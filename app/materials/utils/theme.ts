@@ -4,6 +4,7 @@ const colors = {
   palette: {
     primary: "#EFEEFE",
     secondary: "#1C1F20",
+    gray: "rgba(245, 254, 255, .69)"
   },
 };
 
