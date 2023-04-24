@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import HomeWave from "./materials/components/homeWave";
 import { AiFillFolderOpen, AiOutlineArrowRight } from "react-icons/ai";
+import About from "./materials/components/about";
 
 export default function Home() {
   return (
@@ -64,6 +65,7 @@ export default function Home() {
         </VStack>
       </Grid>
       <HomeWave />
+      <About />
     </>
   );
 }
