@@ -3,15 +3,26 @@ import { ReactElement } from "react";
 import breakPoints from "../utils/breakpoints";
 import Image from "next/image";
 import NavLink from "./navlink";
+import useApp from "../hooks/useApp";
 
 function Navbar(props: NavItems): ReactElement {
   const { logo, navLinks } = props;
+  const appContext = useApp();
 
   // TRACK SCREEN SIZE TO ADJUST THE NAV APPEARANCE
   const [isSmallerThan850] = useMediaQuery("(max-width: 48em)");
 
   return (
-    <Box w="100%" pos="fixed" h="5rem" bg="palette.secondary">
+    <Box
+      zIndex={999}
+      w="100%"
+      pos="fixed"
+      transition="all .2s ease"
+      // bg="palette.secondary"
+      backdropFilter={appContext?.scrolled ? "blur(15px)" : "none"}
+      h={appContext?.scrolled ? "4rem" : "5rem"}
+      boxShadow={appContext?.scrolled ? "0 0 10px rgba(0, 0, 0, .5)" : "none"}
+    >
       <Flex
         justifyContent="space-between"
         alignItems="center"
@@ -21,7 +32,13 @@ function Navbar(props: NavItems): ReactElement {
       >
         {/* LOGO */}
         <Link href="/">
-          <Image src={logo} alt="logo" width={500} height={500} style={{width: "2.5rem"}} />
+          <Image
+            src={logo}
+            alt="logo"
+            width={500}
+            height={500}
+            style={{ width: "2.5rem" }}
+          />
         </Link>
         {/* NAVIGATION LINKS */}
         {isSmallerThan850 ? (

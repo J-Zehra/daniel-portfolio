@@ -1,7 +1,13 @@
 "use client";
 
-import { Box } from "@chakra-ui/react";
+import { Box, Grid } from "@chakra-ui/react";
+import useObserver from "../materials/hooks/useObserver";
 
 export default function Contact() {
-  return <Box>Home</Box>;
+  const { ref } = useObserver("Contact");
+  return (
+    <Grid h="100vh" ref={ref} bg="palette.secondary" placeContent="center">
+      Contact
+    </Grid>
+  );
 }

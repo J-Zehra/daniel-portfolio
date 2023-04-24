@@ -1,5 +1,6 @@
 import { Text } from "@chakra-ui/react";
 import Link from "next/link";
+import useApp from "../hooks/useApp";
 
 interface NavLinkProps {
   nav: string;
@@ -7,6 +8,7 @@ interface NavLinkProps {
 
 function NavLink(props: NavLinkProps) {
   const { nav } = props;
+  const appContext = useApp();
 
   return (
     <Link href={nav === "Home" ? "/" : nav.toLowerCase()}>
@@ -16,8 +18,10 @@ function NavLink(props: NavLinkProps) {
         alignItems="center"
         transition="all .2s ease"
         pos="relative"
-        fontWeight="normal"
-        color="palette.gray"
+        fontWeight={appContext?.activeNav === nav ? "semibold" : "normal"}
+        color={
+          appContext?.activeNav === nav ? "palette.primary" : "palette.gray"
+        }
         _hover={{
           color: "palette.primary",
         }}
