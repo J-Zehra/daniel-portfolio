@@ -4,7 +4,7 @@ const colors = {
   palette: {
     primary: "#EFEEFE",
     secondary: "#1C1F20",
-    gray: "rgba(245, 254, 255, .69)"
+    gray: "rgba(245, 254, 255, .69)",
   },
 };
 
@@ -32,6 +32,11 @@ const styles = {
     },
     "::-webkit-scrollbar": {
       width: "10px",
+    },
+    button: {
+      p: "1.7rem",
+      fontFamily: "inter",
+      _hover: {},
     },
     // "::-webkit-scrollbar-track": {
     //   background: "#F6F5FF",

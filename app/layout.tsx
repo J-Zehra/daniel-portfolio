@@ -4,6 +4,14 @@ import { ChakraProvider } from "@chakra-ui/react";
 import AppContext from "./materials/context/appContext";
 import Navbar from "./materials/components/navbar";
 import theme from "./materials/utils/theme";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
+import "@fontsource/inter/900.css";
+import "@fontsource/poppins/300.css";
+import "@fontsource/poppins/400.css";
+import "@fontsource/poppins/500.css";
 
 export default function RootLayout({
   children,

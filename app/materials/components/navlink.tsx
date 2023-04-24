@@ -16,7 +16,7 @@ function NavLink(props: NavLinkProps) {
         alignItems="center"
         transition="all .2s ease"
         pos="relative"
-        fontWeight="400"
+        fontWeight="normal"
         color="palette.gray"
         _hover={{
           color: "palette.primary",
