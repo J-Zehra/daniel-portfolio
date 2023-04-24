@@ -3,17 +3,17 @@
 import { Box, Grid } from "@chakra-ui/react";
 import useObserver from "../materials/hooks/useObserver";
 
-export default function Portfolio() {
-  const { ref } = useObserver("Portfolio");
+export default function Shop() {
+  const { ref } = useObserver("Shop");
   return (
     <Grid
       h="100vh"
       ref={ref}
-      color="palette.primary"
       bg="palette.secondary"
+      color="palette.primary"
       placeContent="center"
     >
-      Portfolio
+      Shop
     </Grid>
   );
 }

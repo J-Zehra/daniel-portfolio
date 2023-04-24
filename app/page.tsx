@@ -13,11 +13,20 @@ import {
 import HomeWave from "./materials/components/homeWave";
 import { AiFillFolderOpen, AiOutlineArrowRight } from "react-icons/ai";
 import About from "./materials/components/about";
+import useObserver from "./materials/hooks/useObserver";
 
 export default function Home() {
+  const { ref } = useObserver("Home");
+
   return (
     <>
-      <Grid h="100vh" placeContent="center" w="100%" bg="palette.secondary">
+      <Grid
+        ref={ref}
+        h="100vh"
+        placeContent="center"
+        w="100%"
+        bg="palette.secondary"
+      >
         <VStack spacing="1.2rem">
           <Center
             fontFamily="inter"
