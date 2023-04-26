@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function About() {
   return (
-    <VStack w={breakPoints} spacing="6rem" paddingBlock="3rem" margin="auto">
+    <VStack w={breakPoints} spacing="6rem" paddingBlock="4rem 8rem" margin="auto">
       <HStack align="start" spacing=".5rem" w="100%">
         <Box
           w="1.5rem"

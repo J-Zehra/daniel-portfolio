@@ -14,6 +14,7 @@ import HomeWave from "./materials/components/homeWave";
 import { AiFillFolderOpen, AiOutlineArrowRight } from "react-icons/ai";
 import About from "./materials/components/about";
 import useObserver from "./materials/hooks/useObserver";
+import StarBg from "./materials/components/starBg";
 
 export default function Home() {
   const { ref } = useObserver("Home");
@@ -27,7 +28,7 @@ export default function Home() {
         w="100%"
         bg="palette.secondary"
       >
-        <VStack spacing="1.2rem">
+        <VStack spacing="1.2rem" pos="relative">
           <Center
             fontFamily="inter"
             flexDir="column"
@@ -71,6 +72,8 @@ export default function Home() {
               Contact Me
             </Button>
           </HStack>
+          <StarBg top="0" right="0" />
+          <StarBg left="0" bottom="0" />
         </VStack>
       </Grid>
       <HomeWave />

@@ -12,6 +12,7 @@ import "@fontsource/inter/900.css";
 import "@fontsource/poppins/300.css";
 import "@fontsource/poppins/400.css";
 import "@fontsource/poppins/500.css";
+import Footer from "./materials/components/footer";
 
 export default function RootLayout({
   children,
@@ -32,6 +33,7 @@ export default function RootLayout({
               navLinks={["Home", "Portfolio", "Contact", "Shop"]}
             />
             {children}
+            <Footer />
           </ChakraProvider>
         </AppContext>
       </body>
