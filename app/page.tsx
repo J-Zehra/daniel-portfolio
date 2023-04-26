@@ -27,9 +27,11 @@ export default function Home() {
         placeContent="center"
         w="100%"
         bg="palette.secondary"
+        pos="relative"
       >
-        <VStack spacing="1.2rem" pos="relative">
+        <VStack spacing="1.2rem">
           <Center
+            zIndex={1}
             fontFamily="inter"
             flexDir="column"
             fontSize="3.8rem"
@@ -54,7 +56,7 @@ export default function Home() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim{" "}
           </Text>
-          <HStack paddingTop="1rem" spacing="1.2rem">
+          <HStack paddingTop="1rem" zIndex={1} spacing="1.2rem">
             <Button
               leftIcon={<AiFillFolderOpen />}
               bg="palette.primary"
@@ -72,9 +74,12 @@ export default function Home() {
               Contact Me
             </Button>
           </HStack>
-          <StarBg top="0" right="0" />
-          <StarBg left="0" bottom="0" />
         </VStack>
+        <StarBg top="0" right="0" size="10rem" />
+        <StarBg left="0" bottom="0" size="15rem" />
+        <StarBg right="2rem" bottom="5rem" size="18rem" />
+        <StarBg left="2rem" top="5rem" size="25rem" />
+        <StarBg right="15rem" top="10rem" size="20rem" />
       </Grid>
       <HomeWave />
       <About />

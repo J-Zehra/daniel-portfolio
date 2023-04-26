@@ -11,6 +11,7 @@ import React from "react";
 import breakPoints from "../utils/breakpoints";
 import Image from "next/image";
 import { BsFacebook, BsInstagram, BsTwitter } from "react-icons/bs";
+import StarBg from "./starBg";
 
 export default function Footer() {
   const socials = [
@@ -20,8 +21,8 @@ export default function Footer() {
   ];
 
   return (
-    <Box bg="palette.secondary" paddingBlock="2.8rem">
-      <VStack spacing="2.5rem" w={breakPoints} margin="auto">
+    <Box bg="palette.secondary" paddingBlock="2.8rem" pos="relative">
+      <VStack spacing="2.5rem" w={breakPoints} margin="auto" zIndex={1}>
         <HStack w="100%" justify="space-between">
           <Box>
             <Image
@@ -65,6 +66,11 @@ export default function Footer() {
           </HStack>
         </HStack>
       </VStack>
+      <StarBg top="0" right="2rem" size="4rem" />
+      <StarBg left="1rem" bottom="0" size="5rem" />
+      <StarBg right="2rem" bottom="5rem" size="6rem" />
+      <StarBg right="10rem" top="5rem" size="6rem" />
+      <StarBg right="20rem" top="6rem" size="6rem" />
     </Box>
   );
 }

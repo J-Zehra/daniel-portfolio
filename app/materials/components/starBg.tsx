@@ -7,7 +7,9 @@ export default function StarBg({
   right,
   left,
   bottom,
+  size,
 }: {
+  size: string;
   top?: string;
   right?: string;
   left?: string;
@@ -21,7 +23,13 @@ export default function StarBg({
       left={left ? left : ""}
       bottom={bottom ? bottom : ""}
     >
-      <Image src="/assets/star_bg.svg" alt="Star" width={500} height={500} />
+      <Image
+        src="/assets/star_bg.svg"
+        alt="Star"
+        width={500}
+        height={500}
+        style={{ width: size }}
+      />
     </Box>
   );
 }
