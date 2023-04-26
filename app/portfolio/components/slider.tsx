@@ -9,6 +9,8 @@ import "swiper/css/pagination";
 
 // import required modules
 import { EffectCoverflow, Pagination } from "swiper";
+import Image from "next/image";
+import { Box } from "@chakra-ui/react";
 
 export default function Slider() {
   return (
@@ -16,44 +18,26 @@ export default function Slider() {
       <Swiper
         effect={"coverflow"}
         grabCursor={true}
-        slidesPerView={2}
+        slidesPerView={3}
         coverflowEffect={{
-          rotate: 50,
+          rotate: -30,
           stretch: 0,
           depth: 100,
           modifier: 1,
           slideShadows: true,
         }}
-        pagination={true}
+        style={{ padding: "1rem" }}
         modules={[EffectCoverflow, Pagination]}
       >
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-        </SwiperSlide>
+        {[...Array(9)].map((_, index) => {
+          return (
+            <SwiperSlide key={index}>
+              <Box w="20rem" borderRadius=".3rem" h="26rem" bg="palette.gray">
+                {/* <Image src="https://swiperjs.com/demos/images/nature-1.jpg" alt="Sample Work" width={500} height={500}/> */}
+              </Box>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </>
   );
