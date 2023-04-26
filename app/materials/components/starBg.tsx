@@ -8,7 +8,9 @@ export default function StarBg({
   left,
   bottom,
   size,
+  rotation,
 }: {
+  rotation?: string;
   size: string;
   top?: string;
   right?: string;
@@ -17,6 +19,7 @@ export default function StarBg({
 }) {
   return (
     <Box
+      transform={`rotate(${rotation})`}
       pos="absolute"
       top={top ? top : ""}
       right={right ? right : ""}

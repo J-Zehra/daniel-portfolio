@@ -38,13 +38,13 @@ const styles = {
       fontFamily: "inter",
       _hover: {},
     },
-    // "::-webkit-scrollbar-track": {
-    //   background: "#F6F5FF",
-    // },
-    // "::-webkit-scrollbar-thumb": {
-    //   background: "#B0AFBF",
-    //   borderRadius: "10rem",
-    // },
+    "::-webkit-scrollbar-track": {
+      background: "whitesmoke",
+    },
+    "::-webkit-scrollbar-thumb": {
+      background: "#63686A",
+      borderRadius: "10rem",
+    },
   },
 };
 

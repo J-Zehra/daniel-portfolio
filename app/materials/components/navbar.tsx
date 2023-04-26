@@ -17,8 +17,8 @@ function Navbar(props: NavItems): ReactElement {
       zIndex={999}
       w="100%"
       pos="fixed"
-      transition="all .2s ease"
-      // bg="palette.secondary"
+      transition="all .1s ease"
+      bg={appContext?.isSectionInView ? "palette.secondary" : "transparent"}
       backdropFilter={appContext?.scrolled ? "blur(15px)" : "none"}
       h={appContext?.scrolled ? "4rem" : "5rem"}
       boxShadow={appContext?.scrolled ? "0 0 10px rgba(0, 0, 0, .5)" : "none"}

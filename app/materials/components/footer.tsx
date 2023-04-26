@@ -66,11 +66,11 @@ export default function Footer() {
           </HStack>
         </HStack>
       </VStack>
-      <StarBg top="0" right="2rem" size="4rem" />
-      <StarBg left="1rem" bottom="0" size="5rem" />
-      <StarBg right="2rem" bottom="5rem" size="6rem" />
-      <StarBg right="10rem" top="5rem" size="6rem" />
-      <StarBg right="20rem" top="6rem" size="6rem" />
+      <StarBg top="0" right="2rem" size="2rem" />
+      <StarBg left="1rem" bottom="0" size="1rem" />
+      <StarBg right="2rem" bottom="5rem" size="1.8rem" />
+      <StarBg right="10rem" top="5rem" size="2rem" />
+      <StarBg right="10rem" top="6rem" size="2rem" />
     </Box>
   );
 }

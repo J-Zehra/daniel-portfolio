@@ -1,11 +1,32 @@
 import { Box, Center, HStack, Stack, Text, VStack } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import breakPoints from "../utils/breakpoints";
 import Image from "next/image";
+import { useInView } from "framer-motion";
+import useApp from "../hooks/useApp";
 
 export default function About() {
+  const appContext = useApp();
+
+  const ref = useRef(null);
+  const isInView = useInView(ref, { margin: "0px 0px -75% 0px" });
+
+  useEffect(() => {
+    if (isInView) {
+      appContext?.setIsSectionInView(true);
+    } else {
+      appContext?.setIsSectionInView(false);
+    }
+  }, [appContext, isInView]);
+
   return (
-    <VStack w={breakPoints} spacing="6rem" paddingBlock="4rem 8rem" margin="auto">
+    <VStack
+      w={breakPoints}
+      spacing="6rem"
+      paddingBlock="4rem 8rem"
+      margin="auto"
+      ref={ref}
+    >
       <HStack align="start" spacing=".5rem" w="100%">
         <Box
           w="1.5rem"

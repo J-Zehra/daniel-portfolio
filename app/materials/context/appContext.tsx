@@ -7,10 +7,11 @@ function AppContext({ children }: { children: React.ReactNode }) {
 
   // INITIALIZE A STATE TO TRACK IF THE PAGE IS SCROLLED
   const [scrolled, setScrolled] = useState<boolean>(false);
+  const [isSectionInView, setIsSectionInView] = useState<boolean>(false);
 
   // HANDLE THE SCROLL EVENT. CHANGE VARIABLES WHEN SCROLLED
   const handleScroll = () => {
-    if (window.scrollY >= 60) {
+    if (window.scrollY >= 50) {
       setScrolled(true);
     } else {
       setScrolled(false);
@@ -27,9 +28,11 @@ function AppContext({ children }: { children: React.ReactNode }) {
       scrolled,
       activeNav,
       setActiveNav,
+      isSectionInView,
+      setIsSectionInView,
     };
     return items;
-  }, [activeNav, scrolled]);
+  }, [activeNav, isSectionInView, scrolled]);
 
   return (
     <ApplicationContext.Provider value={values}>

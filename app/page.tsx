@@ -75,11 +75,11 @@ export default function Home() {
             </Button>
           </HStack>
         </VStack>
-        <StarBg top="0" right="0" size="10rem" />
-        <StarBg left="0" bottom="0" size="15rem" />
-        <StarBg right="2rem" bottom="5rem" size="18rem" />
-        <StarBg left="2rem" top="5rem" size="25rem" />
-        <StarBg right="15rem" top="10rem" size="20rem" />
+        <StarBg top="0" right="0" size="5rem" rotation="20deg" />
+        <StarBg left="0" bottom="0" size="15rem" rotation="80deg" />
+        <StarBg right="2rem" bottom="5rem" size="11rem" rotation="-20deg" />
+        <StarBg left="2rem" top="5rem" size="19rem"  rotation="200deg"/>
+        <StarBg right="15rem" top="10rem" size="16rem" rotation="120deg"/>
       </Grid>
       <HomeWave />
       <About />
