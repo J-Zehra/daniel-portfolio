@@ -23,13 +23,13 @@ export default function Home() {
     <>
       <Grid
         ref={ref}
-        h="100vh"
+        h="80vh"
         placeContent="center"
         w="100%"
         bg="palette.secondary"
         pos="relative"
       >
-        <VStack spacing="1.2rem">
+        <VStack spacing="1.2rem" paddingTop="10rem">
           <Center
             zIndex={1}
             fontFamily="inter"
@@ -75,11 +75,11 @@ export default function Home() {
             </Button>
           </HStack>
         </VStack>
-        <StarBg top="0" right="0" size="5rem" rotation="20deg" />
+        {/* <StarBg top="0" right="0" size="5rem" rotation="20deg" />
         <StarBg left="0" bottom="0" size="15rem" rotation="80deg" />
         <StarBg right="2rem" bottom="5rem" size="11rem" rotation="-20deg" />
         <StarBg left="2rem" top="5rem" size="19rem"  rotation="200deg"/>
-        <StarBg right="15rem" top="10rem" size="16rem" rotation="120deg"/>
+        <StarBg right="15rem" top="10rem" size="16rem" rotation="120deg"/> */}
       </Grid>
       <HomeWave />
       <About />
