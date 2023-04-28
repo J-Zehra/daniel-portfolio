@@ -14,7 +14,6 @@ import HomeWave from "./materials/components/homeWave";
 import { AiFillFolderOpen, AiOutlineArrowRight } from "react-icons/ai";
 import About from "./materials/components/about";
 import useObserver from "./materials/hooks/useObserver";
-import StarBg from "./materials/components/starBg";
 
 export default function Home() {
   const { ref } = useObserver("Home");
@@ -75,11 +74,6 @@ export default function Home() {
             </Button>
           </HStack>
         </VStack>
-        {/* <StarBg top="0" right="0" size="5rem" rotation="20deg" />
-        <StarBg left="0" bottom="0" size="15rem" rotation="80deg" />
-        <StarBg right="2rem" bottom="5rem" size="11rem" rotation="-20deg" />
-        <StarBg left="2rem" top="5rem" size="19rem"  rotation="200deg"/>
-        <StarBg right="15rem" top="10rem" size="16rem" rotation="120deg"/> */}
       </Grid>
       <HomeWave />
       <About />
