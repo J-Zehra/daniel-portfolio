@@ -52,8 +52,8 @@ export default function Slider() {
           return activeIndex === index ? (
             <Box
               as={motion.div}
-              animate={{ opacity: 1, y: 0 }}
-              initial={{ opacity: 0, y: 2 }}
+              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, x: -10 }}
               color="palette.secondary"
             >
               <Image

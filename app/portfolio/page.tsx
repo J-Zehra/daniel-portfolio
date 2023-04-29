@@ -20,9 +20,26 @@ import breakPoints from "../materials/utils/breakpoints";
 import ViewTab from "./components/viewTab";
 import { BsFillGridFill } from "react-icons/bs";
 import { MdOutlineViewCarousel } from "react-icons/md";
+import GridView from "./components/gridView";
+import useApp from "../materials/hooks/useApp";
+import { useEffect, useRef } from "react";
+import { useInView } from "framer-motion";
 
 export default function Portfolio() {
   const { ref } = useObserver("Portfolio");
+
+  const appContext = useApp();
+
+  const ref2 = useRef(null);
+  const isInView = useInView(ref2, { margin: "0px 0px -75% 0px" });
+
+  useEffect(() => {
+    if (isInView) {
+      appContext?.setIsSectionInView(true);
+    } else {
+      appContext?.setIsSectionInView(false);
+    }
+  }, [appContext, isInView]);
   return (
     <>
       <Box h="30vh" bg="palette.secondary" ref={ref}>
@@ -54,7 +71,7 @@ export default function Portfolio() {
         </VStack>
       </Box>
       <HomeWave />
-      <Box w={breakPoints} margin="auto" h="50rem">
+      <Box w={breakPoints} ref={ref2} margin="auto" paddingBottom="5rem">
         <Tabs align="end">
           <TabList borderBottom="none">
             <Tab
@@ -87,7 +104,9 @@ export default function Portfolio() {
             <TabPanel>
               <Slider />
             </TabPanel>
-            <TabPanel></TabPanel>
+            <TabPanel>
+              <GridView />
+            </TabPanel>
           </TabPanels>
         </Tabs>
       </Box>
