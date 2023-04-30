@@ -2,6 +2,8 @@
 
 import { Box, Grid } from "@chakra-ui/react";
 import useObserver from "../materials/hooks/useObserver";
+import Lottie from "react-lottie-player";
+import ComingSoon from "../materials/animation_assets/coming_soon.json";
 
 export default function Shop() {
   const { ref } = useObserver("Shop");
@@ -13,7 +15,12 @@ export default function Shop() {
       color="palette.primary"
       placeContent="center"
     >
-      Shop
+      <Lottie
+        loop
+        animationData={ComingSoon}
+        play
+        style={{ width: 500, height: 500 }}
+      />
     </Grid>
   );
 }
