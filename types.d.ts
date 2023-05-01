@@ -1,6 +1,7 @@
 type NavItems = {
   navLinks: string[];
   logo: string;
+  logo_dark: string;
 };
 
 type AppContextValues = {

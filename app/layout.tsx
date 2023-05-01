@@ -30,6 +30,7 @@ export default function RootLayout({
           <ChakraProvider theme={theme}>
             <Navbar
               logo="/white_logo.svg"
+              logo_dark="/black_logo.svg"
               navLinks={["Home", "Portfolio", "Contact", "Shop"]}
             />
             {children}

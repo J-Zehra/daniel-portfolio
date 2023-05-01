@@ -4,6 +4,7 @@ const colors = {
   palette: {
     primary: "#EFEEFE",
     secondary: "#1C1F20",
+    secondary_hover: "#242728",
     gray: "rgba(245, 254, 255, .69)",
   },
 };

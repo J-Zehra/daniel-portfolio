@@ -1,17 +1,6 @@
 "use client";
 
-import {
-  Box,
-  Button,
-  Center,
-  Grid,
-  HStack,
-  Highlight,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
-import HomeWave from "./materials/components/homeWave";
-import { AiFillFolderOpen, AiOutlineArrowRight } from "react-icons/ai";
+import { Box } from "@chakra-ui/react";
 import About from "./materials/components/about";
 import useObserver from "./materials/hooks/useObserver";
 
@@ -19,8 +8,8 @@ export default function Home() {
   const { ref } = useObserver("Home");
 
   return (
-    <>
-      <Grid
+    <Box ref={ref}>
+      {/* <Grid
         ref={ref}
         h="80vh"
         placeContent="center"
@@ -59,7 +48,7 @@ export default function Home() {
             <Button
               leftIcon={<AiFillFolderOpen />}
               bg="palette.primary"
-              _hover={{ bg: "palette.gray" }}
+              _hover={{ bg: "palette.secondary_hover" }}
             >
               My Portfolio
             </Button>
@@ -75,8 +64,8 @@ export default function Home() {
           </HStack>
         </VStack>
       </Grid>
-      <HomeWave />
+      <HomeWave /> */}
       <About />
-    </>
+    </Box>
   );
 }

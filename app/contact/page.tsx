@@ -5,8 +5,10 @@ import {
   Button,
   Center,
   Grid,
+  HStack,
   Highlight,
   Input,
+  Link,
   Stack,
   Text,
   Textarea,
@@ -14,9 +16,31 @@ import {
 } from "@chakra-ui/react";
 import useObserver from "../materials/hooks/useObserver";
 import breakPoints from "../materials/utils/breakpoints";
+import { BsFacebook, BsInstagram, BsTwitter } from "react-icons/bs";
+import { useEffect, useRef } from "react";
+import useApp from "../materials/hooks/useApp";
+import { useInView } from "framer-motion";
 
 export default function Contact() {
   const { ref } = useObserver("Contact");
+  const appContext = useApp();
+  const socials = [
+    { link: "", icon: <BsFacebook /> },
+    { link: "", icon: <BsTwitter /> },
+    { link: "", icon: <BsInstagram /> },
+  ];
+
+  const ref2 = useRef(null);
+  const isInView = useInView(ref2, { margin: "0px 0px -75% 0px" });
+
+  useEffect(() => {
+    if (isInView) {
+      appContext?.setIsSectionInView(true);
+    } else {
+      appContext?.setIsSectionInView(false);
+    }
+  }, [appContext, isInView]);
+
   return (
     <>
       <Box h="45vh" bg="palette.secondary" ref={ref}>
@@ -45,9 +69,31 @@ export default function Contact() {
           >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           </Text>
+          <HStack spacing="1.2rem" paddingTop="1rem">
+            {socials.map((social) => {
+              return (
+                <Link
+                  fontSize="1.25rem"
+                  color="palette.gray"
+                  key={social.link}
+                  href={social.link}
+                  target="_blank"
+                  _hover={{ color: "palette.primary" }}
+                >
+                  {social.icon}
+                </Link>
+              );
+            })}
+          </HStack>
         </VStack>
       </Box>
-      <VStack paddingBlock="5rem" w={breakPoints} margin="auto" spacing="3rem">
+      <VStack
+        ref={ref2}
+        paddingBlock="5rem"
+        w={breakPoints}
+        margin="auto"
+        spacing="3rem"
+      >
         <Stack w="100%" direction="row" spacing="5rem">
           <Input
             p="1.5rem 1rem"

@@ -1,12 +1,23 @@
-import { Box, Center, HStack, Stack, Text, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Center,
+  HStack,
+  Stack,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import React, { useEffect, useRef } from "react";
 import breakPoints from "../utils/breakpoints";
 import Image from "next/image";
 import { useInView } from "framer-motion";
 import useApp from "../hooks/useApp";
+import { AiFillFolderOpen, AiOutlineArrowRight } from "react-icons/ai";
+import { useRouter } from "next/navigation";
 
 export default function About() {
   const appContext = useApp();
+  const router = useRouter();
 
   const ref = useRef(null);
   const isInView = useInView(ref, { margin: "0px 0px -75% 0px" });
@@ -23,11 +34,14 @@ export default function About() {
     <VStack
       w={breakPoints}
       spacing="6rem"
-      paddingBlock="4rem 8rem"
+      h="100vh"
+      align="center"
+      justify="center"
+      // paddingBlock="8rem 8rem"
       margin="auto"
       ref={ref}
     >
-      <HStack align="start" spacing=".5rem" w="100%">
+      {/* <HStack align="start" spacing=".5rem" w="100%">
         <Box
           w="1.5rem"
           h="2.5rem"
@@ -47,7 +61,7 @@ export default function About() {
             Get to know me.
           </Text>
         </VStack>
-      </HStack>
+      </HStack> */}
       <Stack w="100%" direction="row">
         <Box flex={1}>
           <Box
@@ -85,7 +99,7 @@ export default function About() {
             </Box>
           </Box>
         </Box>
-        <Center flex={1}>
+        <Center flex={1} flexDir="column">
           <Text>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -95,6 +109,27 @@ export default function About() {
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
             culpa qui officia deserunt mollit anim id est laborum.
           </Text>
+          <HStack paddingTop="1rem" zIndex={1} w="100%" spacing="1.2rem">
+            <Button
+              leftIcon={<AiFillFolderOpen />}
+              bg="palette.secondary"
+              color="palette.primary"
+              _hover={{ bg: "palette.secondary_hover" }}
+              onClick={() => router.push("portfolio")}
+            >
+              My Portfolio
+            </Button>
+            <Button
+              bg="tranparent"
+              border="1px solid"
+              color="palette.secondary"
+              rightIcon={<AiOutlineArrowRight />}
+              _hover={{}}
+              onClick={() => router.push("contact")}
+            >
+              Contact Me
+            </Button>
+          </HStack>
         </Center>
       </Stack>
     </VStack>

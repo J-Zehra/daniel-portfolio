@@ -6,7 +6,7 @@ import NavLink from "./navlink";
 import useApp from "../hooks/useApp";
 
 function Navbar(props: NavItems): ReactElement {
-  const { logo, navLinks } = props;
+  const { logo, navLinks, logo_dark } = props;
   const appContext = useApp();
 
   // TRACK SCREEN SIZE TO ADJUST THE NAV APPEARANCE
@@ -18,7 +18,11 @@ function Navbar(props: NavItems): ReactElement {
       w="100%"
       pos="fixed"
       transition="all .1s ease"
-      bg={appContext?.isSectionInView ? "palette.secondary" : "transparent"}
+      bg={
+        appContext?.isSectionInView && appContext.activeNav !== "Home"
+          ? "palette.secondary"
+          : "transparent"
+      }
       backdropFilter={appContext?.scrolled ? "blur(15px)" : "none"}
       h={appContext?.scrolled ? "4rem" : "5rem"}
       boxShadow={appContext?.scrolled ? "0 0 10px rgba(0, 0, 0, .5)" : "none"}
@@ -33,7 +37,7 @@ function Navbar(props: NavItems): ReactElement {
         {/* LOGO */}
         <Link href="/">
           <Image
-            src={logo}
+            src={appContext?.activeNav === "Home" ? logo_dark : logo}
             alt="logo"
             width={500}
             height={500}
