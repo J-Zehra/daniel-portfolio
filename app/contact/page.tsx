@@ -97,7 +97,7 @@ export default function Contact() {
         <Stack
           w="100%"
           direction={{ base: "column", md: "row" }}
-          spacing={{ base: 0, md: "5rem" }}
+          spacing={{ base: "3rem", md: "5rem" }}
         >
           <Input
             p="1.5rem 1rem"
