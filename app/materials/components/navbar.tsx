@@ -1,13 +1,24 @@
-import { Box, Flex, HStack, Link, Text, useMediaQuery } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  HStack,
+  Link,
+  Text,
+  useDisclosure,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import { ReactElement } from "react";
 import breakPoints from "../utils/breakpoints";
 import Image from "next/image";
 import NavLink from "./navlink";
 import useApp from "../hooks/useApp";
+import MobileMenu from "./mobileMenu";
+import { AiOutlineMenu } from "react-icons/ai";
 
 function Navbar(props: NavItems): ReactElement {
   const { logo, navLinks, logo_dark } = props;
   const appContext = useApp();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   // TRACK SCREEN SIZE TO ADJUST THE NAV APPEARANCE
   const [isSmallerThan850] = useMediaQuery("(max-width: 48em)");
@@ -46,7 +57,17 @@ function Navbar(props: NavItems): ReactElement {
         </Link>
         {/* NAVIGATION LINKS */}
         {isSmallerThan850 ? (
-          <Text>Mobile View</Text>
+          <Box
+            fontSize="1.8rem"
+            color={
+              appContext?.activeNav === "Home"
+                ? "palette.secondary"
+                : "palette.primary"
+            }
+            onClick={onOpen}
+          >
+            <AiOutlineMenu />
+          </Box>
         ) : (
           <HStack spacing="2rem">
             {navLinks.map((nav) => {
@@ -55,6 +76,7 @@ function Navbar(props: NavItems): ReactElement {
           </HStack>
         )}
       </Flex>
+      <MobileMenu isOpen={isOpen} onClose={onClose} />
     </Box>
   );
 }

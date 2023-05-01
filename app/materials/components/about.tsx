@@ -34,7 +34,8 @@ export default function About() {
     <VStack
       w={breakPoints}
       spacing="6rem"
-      h="100vh"
+      h={{ base: "100%", md: "100vh" }}
+      paddingBlock={{ base: "8rem", md: 0 }}
       align="center"
       justify="center"
       // paddingBlock="8rem 8rem"
@@ -62,11 +63,15 @@ export default function About() {
           </Text>
         </VStack>
       </HStack> */}
-      <Stack w="100%" direction="row">
-        <Box flex={1}>
+      <Stack
+        w="100%"
+        direction={{ base: "column", md: "row" }}
+        spacing={{ base: "5rem", md: 0 }}
+      >
+        <Center justifyContent={{ base: "center", md: "start" }} flex={1}>
           <Box
-            w="25rem"
-            h="25rem"
+            w={{ base: "20rem", md: "25rem" }}
+            h={{ base: "20rem", md: "25rem" }}
             pos="relative"
             bg="palette.secondary"
             borderRadius="50%"
@@ -98,7 +103,7 @@ export default function About() {
               />
             </Box>
           </Box>
-        </Box>
+        </Center>
         <Center flex={1} flexDir="column">
           <Text>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
