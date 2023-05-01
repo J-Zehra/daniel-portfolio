@@ -14,6 +14,7 @@ import NavLink from "./navlink";
 import useApp from "../hooks/useApp";
 import MobileMenu from "./mobileMenu";
 import { AiOutlineMenu } from "react-icons/ai";
+import { motion } from "framer-motion";
 
 function Navbar(props: NavItems): ReactElement {
   const { logo, navLinks, logo_dark } = props;
@@ -22,6 +23,22 @@ function Navbar(props: NavItems): ReactElement {
 
   // TRACK SCREEN SIZE TO ADJUST THE NAV APPEARANCE
   const [isSmallerThan850] = useMediaQuery("(max-width: 48em)");
+
+  const container = {
+    hidden: { opacity: 0, y: -20 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: -20 },
+    show: { opacity: 1, y: 0 },
+  };
 
   return (
     <Box
@@ -44,9 +61,13 @@ function Navbar(props: NavItems): ReactElement {
         h="100%"
         margin="auto"
         w={breakPoints}
+        as={motion.div}
+        variants={container}
+        animate="show"
+        initial="hidden"
       >
         {/* LOGO */}
-        <Link href="/">
+        <Link href="/" as={motion.a} variants={item}>
           <Image
             src={appContext?.activeNav === "Home" ? logo_dark : logo}
             alt="logo"
@@ -58,6 +79,8 @@ function Navbar(props: NavItems): ReactElement {
         {/* NAVIGATION LINKS */}
         {isSmallerThan850 ? (
           <Box
+            as={motion.div}
+            variants={item}
             fontSize="1.8rem"
             color={
               appContext?.activeNav === "Home"

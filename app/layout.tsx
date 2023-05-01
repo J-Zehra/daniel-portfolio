@@ -13,12 +13,16 @@ import "@fontsource/poppins/300.css";
 import "@fontsource/poppins/400.css";
 import "@fontsource/poppins/500.css";
 import Footer from "./materials/components/footer";
+import { useState } from "react";
+import SplashScreen from "./materials/components/splashScreen";
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const [splashLoading, setSplashLoading] = useState(false);
+
   return (
     <html lang="en">
       <head>
@@ -28,13 +32,19 @@ export default function RootLayout({
       <body>
         <AppContext>
           <ChakraProvider theme={theme}>
-            <Navbar
-              logo="/white_logo.svg"
-              logo_dark="/black_logo.svg"
-              navLinks={["Home", "Portfolio", "Contact", "Shop"]}
-            />
-            {children}
-            <Footer />
+            {splashLoading ? (
+              <SplashScreen />
+            ) : (
+              <>
+                <Navbar
+                  logo="/white_logo.svg"
+                  logo_dark="/black_logo.svg"
+                  navLinks={["Home", "Portfolio", "Contact", "Shop"]}
+                />
+                {children}
+                <Footer />
+              </>
+            )}
           </ChakraProvider>
         </AppContext>
       </body>

@@ -54,7 +54,8 @@ export default function Footer() {
               return (
                 <Link
                   fontSize="1.25rem"
-                  color="palette.primary"
+                  color="palette.gray"
+                  _hover={{ color: "palette.primary" }}
                   key={social.link}
                   href={social.link}
                   target="_blank"

@@ -23,7 +23,7 @@ import { MdOutlineViewCarousel } from "react-icons/md";
 import GridView from "./components/gridView";
 import useApp from "../materials/hooks/useApp";
 import { useEffect, useRef } from "react";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 export default function Portfolio() {
   const { ref } = useObserver("Portfolio");
@@ -43,7 +43,13 @@ export default function Portfolio() {
   return (
     <>
       <Box h="30vh" bg="palette.secondary" ref={ref}>
-        <VStack h="100%" justify="end">
+        <VStack
+          h="100%"
+          justify="end"
+          as={motion.div}
+          animate={{ opacity: 1, y: 0, transition: { duration: 0.4 } }}
+          initial={{ opacity: 0, y: -20 }}
+        >
           <Center
             zIndex={1}
             fontFamily="inter"
@@ -71,7 +77,15 @@ export default function Portfolio() {
         </VStack>
       </Box>
       <HomeWave />
-      <Box w={breakPoints} ref={ref2} margin="auto" paddingBottom="5rem">
+      <Box
+        w={breakPoints}
+        ref={ref2}
+        margin="auto"
+        paddingBottom="5rem"
+        as={motion.div}
+        animate={{ opacity: 1, y: 0, transition: { duration: 0.4 } }}
+        initial={{ opacity: 0, y: -20 }}
+      >
         <Tabs align="end">
           <TabList borderBottom="none">
             <Tab

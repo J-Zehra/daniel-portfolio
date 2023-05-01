@@ -10,7 +10,7 @@ import {
 import React, { useEffect, useRef } from "react";
 import breakPoints from "../utils/breakpoints";
 import Image from "next/image";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import useApp from "../hooks/useApp";
 import { AiFillFolderOpen, AiOutlineArrowRight } from "react-icons/ai";
 import { useRouter } from "next/navigation";
@@ -41,6 +41,9 @@ export default function About() {
       // paddingBlock="8rem 8rem"
       margin="auto"
       ref={ref}
+      as={motion.div}
+      animate={{ opacity: 1, y: 0, transition: { duration: 0.4 } }}
+      initial={{ opacity: 0, y: -20 }}
     >
       {/* <HStack align="start" spacing=".5rem" w="100%">
         <Box

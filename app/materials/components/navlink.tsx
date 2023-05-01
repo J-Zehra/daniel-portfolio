@@ -12,9 +12,14 @@ function NavLink(props: NavLinkProps) {
   const { nav } = props;
   const appContext = useApp();
 
+  const item = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1 },
+  };
+
   return (
     <Link href={nav === "Home" ? "/" : nav.toLowerCase()}>
-      <HStack spacing=".1rem">
+      <HStack spacing=".1rem" as={motion.div} variants={item}>
         {appContext?.activeNav === nav ? (
           <Box
             w="1.5rem"
@@ -44,7 +49,9 @@ function NavLink(props: NavLinkProps) {
           pos="relative"
           color={
             appContext?.activeNav === "Home"
-              ? appContext.activeNav === nav ? "palette.secondary" : "palette.secondary_hover"
+              ? appContext.activeNav === nav
+                ? "palette.secondary"
+                : "palette.secondary_hover"
               : appContext?.activeNav === nav
               ? "palette.primary"
               : "palette.gray"
