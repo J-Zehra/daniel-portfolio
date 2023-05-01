@@ -94,7 +94,11 @@ export default function Contact() {
         margin="auto"
         spacing="3rem"
       >
-        <Stack w="100%" direction="row" spacing="5rem">
+        <Stack
+          w="100%"
+          direction={{ base: "column", md: "row" }}
+          spacing="5rem"
+        >
           <Input
             p="1.5rem 1rem"
             variant="flushed"

@@ -23,7 +23,17 @@ export default function Slider() {
       <Swiper
         effect={"coverflow"}
         grabCursor={true}
-        slidesPerView={3}
+        breakpoints={{
+          0: {
+            slidesPerView: 1,
+          },
+          480: {
+            slidesPerView: 2,
+          },
+          640: {
+            slidesPerView: 3,
+          },
+        }}
         coverflowEffect={{
           rotate: -30,
           stretch: 0,
