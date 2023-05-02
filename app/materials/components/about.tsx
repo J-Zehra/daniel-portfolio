@@ -109,13 +109,20 @@ export default function About() {
         </Center>
         <Center flex={1} flexDir="column">
           <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            Daniel Serra is a Visual Artist of Cuban origin who currently
+            attends Miami International University of Arts and Design as a
+            senior student. He has made an impact at his university through his
+            proficiency in Digital Media, with a specialization in Illustration
+            and Augmented Reality Experiences. He presently resides in Miami and
+            is pursuing his Senior year at Miami International University of
+            Arts and Design.
+          </Text>
+          <Text paddingTop="1rem">
+            Through his unique artistic approach, Serra conveys compelling
+            fantasy narratives that are distinguished by their remarkable
+            intuitiveness and simplicity. His works transcend the conventional
+            confines of linear storytelling and embody a cohesive and
+            self-contained artistic expression.
           </Text>
           <HStack paddingTop="1rem" zIndex={1} w="100%" spacing="1.2rem">
             <Button
