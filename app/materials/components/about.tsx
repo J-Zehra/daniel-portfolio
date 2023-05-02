@@ -113,9 +113,7 @@ export default function About() {
             attends Miami International University of Arts and Design as a
             senior student. He has made an impact at his university through his
             proficiency in Digital Media, with a specialization in Illustration
-            and Augmented Reality Experiences. He presently resides in Miami and
-            is pursuing his Senior year at Miami International University of
-            Arts and Design.
+            and Augmented Reality Experiences.
           </Text>
           <Text paddingTop="1rem">
             Through his unique artistic approach, Serra conveys compelling
