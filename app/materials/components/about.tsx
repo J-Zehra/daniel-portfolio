@@ -73,8 +73,8 @@ export default function About() {
       >
         <Center justifyContent={{ base: "center", md: "start" }} flex={1}>
           <Box
-            w={{ base: "20rem", md: "25rem" }}
-            h={{ base: "20rem", md: "25rem" }}
+            w={{ base: "16rem", md: "22rem" }}
+            h={{ base: "16rem", md: "22rem" }}
             pos="relative"
             bg="palette.secondary"
             borderRadius="50%"

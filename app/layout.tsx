@@ -13,15 +13,23 @@ import "@fontsource/poppins/300.css";
 import "@fontsource/poppins/400.css";
 import "@fontsource/poppins/500.css";
 import Footer from "./materials/components/footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SplashScreen from "./materials/components/splashScreen";
+import { AnimatePresence } from "framer-motion";
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [splashLoading, setSplashLoading] = useState(false);
+  const [splashLoading, setSplashLoading] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setSplashLoading(false);
+    }, 1600); // Change the value here to set the duration of the splash screen
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <html lang="en">
@@ -32,9 +40,25 @@ export default function RootLayout({
       <body>
         <AppContext>
           <ChakraProvider theme={theme}>
-            {splashLoading ? (
-              <SplashScreen />
-            ) : (
+            {/* <AnimatePresence>
+              {splashLoading ? (
+                <SplashScreen />
+              ) : (
+                <>
+                  <Navbar
+                    logo="/white_logo.svg"
+                    logo_dark="/black_logo.svg"
+                    navLinks={["Home", "Portfolio", "Contact", "Shop"]}
+                  />
+                  {children}
+                  <Footer />
+                </>
+              )}
+            </AnimatePresence> */}
+            <AnimatePresence>
+              {splashLoading && <SplashScreen />}
+            </AnimatePresence>
+            {!splashLoading && (
               <>
                 <Navbar
                   logo="/white_logo.svg"
