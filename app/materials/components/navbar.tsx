@@ -63,13 +63,18 @@ function Navbar(props: NavItems): ReactElement {
       >
         {/* LOGO */}
         <Link href="/" as={motion.a} variants={item}>
-          <Image
-            src={logo_dark}
-            alt="logo"
-            width={500}
-            height={500}
-            style={{ width: "2.5rem" }}
-          />
+          <HStack>
+            <Image
+              src={logo_dark}
+              alt="logo"
+              width={500}
+              height={500}
+              style={{ width: "2.5rem" }}
+            />
+            <Text fontFamily="Mostera" fontWeight="bold" fontSize="1.5rem">
+              Daniel Serra
+            </Text>
+          </HStack>
         </Link>
         {/* NAVIGATION LINKS */}
         {isSmallerThan850 ? (

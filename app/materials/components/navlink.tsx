@@ -43,6 +43,7 @@ function NavLink(props: NavLinkProps) {
           alignItems="center"
           transition="all .2s ease"
           pos="relative"
+          fontWeight="normal"
           color={
             appContext?.activeNav === nav
               ? "palette.secondary"

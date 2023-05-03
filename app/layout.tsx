@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 import SplashScreen from "./materials/components/splashScreen";
 import { AnimatePresence } from "framer-motion";
 import { QueryClient, QueryClientProvider } from "react-query";
+import Fonts from "./materials/components/font";
 
 export default function RootLayout({
   children,
@@ -43,6 +44,7 @@ export default function RootLayout({
       <body>
         <AppContext>
           <ChakraProvider theme={theme}>
+            <Fonts />
             <QueryClientProvider client={client}>
               <AnimatePresence>
                 {splashLoading && <SplashScreen />}
