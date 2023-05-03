@@ -11,3 +11,9 @@ type AppContextValues = {
   setIsSectionInView: Dispatch<SetStateAction<boolean>>;
   setActiveNav: Dispatch<SetStateAction<string>>;
 };
+
+type Artworks = {
+  _id: string;
+  name: string;
+  artwork_image: { asset: { url: string } };
+};

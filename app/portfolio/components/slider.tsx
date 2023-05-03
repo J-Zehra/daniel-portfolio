@@ -10,13 +10,43 @@ import "swiper/css/pagination";
 // import required modules
 import { EffectCoverflow, Pagination } from "swiper";
 import Image from "next/image";
-import { Box, Center, HStack } from "@chakra-ui/react";
-import { BsDot } from "react-icons/bs";
+import {
+  AspectRatio,
+  Box,
+  Center,
+  HStack,
+  Skeleton,
+  Text,
+} from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import { useQuery } from "react-query";
+import client from "@/client";
 
 export default function Slider() {
   const itemCount = 10;
   const [activeIndex, setActiveIndex] = useState<number>(0);
+
+  const getArtworks = async () => {
+    const data = await client.fetch(
+      `*[_type == "artworks"]{ 
+        _id,
+        name,
+        artwork_image { asset -> {url} }
+      }`
+    );
+    return data as Artworks[];
+  };
+
+  const {
+    data: artworks,
+    isFetching,
+    isLoading,
+  } = useQuery({
+    queryKey: ["artworks"],
+    queryFn: getArtworks,
+  });
+
+  console.log(artworks);
 
   return (
     <Center pos="relative">
@@ -39,7 +69,7 @@ export default function Slider() {
           stretch: 0,
           depth: 100,
           modifier: 1,
-          slideShadows: true,
+          slideShadows: false,
         }}
         onSlideChange={(swiper) => {
           setActiveIndex(swiper.activeIndex);
@@ -47,18 +77,55 @@ export default function Slider() {
         style={{ padding: "1rem" }}
         modules={[EffectCoverflow, Pagination]}
       >
-        {[...Array(itemCount)].map((_, index) => {
+        {artworks?.map((item, index) => {
           return (
             <SwiperSlide key={index}>
-              <Box w="20rem" borderRadius=".3rem" h="26rem" bg="palette.gray">
-                {/* <Image src="https://swiperjs.com/demos/images/nature-1.jpg" alt="Sample Work" width={500} height={500}/> */}
-              </Box>
+              <Skeleton isLoaded={!isFetching && !isLoading}>
+                <AspectRatio ratio={2 / 3} w="20rem">
+                  <Center
+                    flexDir="column"
+                    // justifyContent="space-between"
+                    w="20rem"
+                    borderRadius=".5rem"
+                    h="30rem"
+                  >
+                    <Text
+                      bg="palette.secondary"
+                      textAlign="center"
+                      fontFamily="inter"
+                      p="1.2rem"
+                      borderTopRadius=".5rem"
+                      fontSize="1.2rem"
+                      fontWeight="semibold"
+                      w="100%"
+                      h="15%"
+                      color="palette.primary"
+                    >
+                      {item.name}
+                    </Text>
+                    <Box w="100%" h="85%">
+                      <Image
+                        src={item.artwork_image.asset.url}
+                        alt="Sample Work"
+                        width={500}
+                        height={500}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          borderBottomLeftRadius: ".5rem",
+                          borderBottomRightRadius: ".5rem",
+                        }}
+                      />
+                    </Box>
+                  </Center>
+                </AspectRatio>
+              </Skeleton>
             </SwiperSlide>
           );
         })}
       </Swiper>
       <HStack pos="absolute" bottom="-2rem" spacing=".8rem">
-        {[...Array(itemCount - 1)].map((_, index) => {
+        {[...Array(artworks && artworks?.length - 1)].map((_, index) => {
           return activeIndex === index ? (
             <Box
               as={motion.div}

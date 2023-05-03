@@ -32,7 +32,6 @@ export default function Portfolio() {
 
   const ref2 = useRef(null);
   const isInView = useInView(ref2, { margin: "0px 0px -75% 0px" });
-
   useEffect(() => {
     if (isInView) {
       appContext?.setIsSectionInView(true);

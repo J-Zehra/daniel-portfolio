@@ -16,6 +16,7 @@ import Footer from "./materials/components/footer";
 import { useEffect, useState } from "react";
 import SplashScreen from "./materials/components/splashScreen";
 import { AnimatePresence } from "framer-motion";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 export default function RootLayout({
   children,
@@ -31,6 +32,8 @@ export default function RootLayout({
     return () => clearTimeout(timer);
   }, []);
 
+  const client = new QueryClient();
+
   return (
     <html lang="en">
       <head>
@@ -40,10 +43,11 @@ export default function RootLayout({
       <body>
         <AppContext>
           <ChakraProvider theme={theme}>
-            {/* <AnimatePresence>
-              {splashLoading ? (
-                <SplashScreen />
-              ) : (
+            <QueryClientProvider client={client}>
+              <AnimatePresence>
+                {splashLoading && <SplashScreen />}
+              </AnimatePresence>
+              {!splashLoading && (
                 <>
                   <Navbar
                     logo="/white_logo.svg"
@@ -54,21 +58,7 @@ export default function RootLayout({
                   <Footer />
                 </>
               )}
-            </AnimatePresence> */}
-            <AnimatePresence>
-              {splashLoading && <SplashScreen />}
-            </AnimatePresence>
-            {!splashLoading && (
-              <>
-                <Navbar
-                  logo="/white_logo.svg"
-                  logo_dark="/black_logo.svg"
-                  navLinks={["Home", "Portfolio", "Contact", "Shop"]}
-                />
-                {children}
-                <Footer />
-              </>
-            )}
+            </QueryClientProvider>
           </ChakraProvider>
         </AppContext>
       </body>
