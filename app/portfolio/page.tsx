@@ -30,56 +30,13 @@ export default function Portfolio() {
 
   const appContext = useApp();
 
-  const ref2 = useRef(null);
-  const isInView = useInView(ref2, { margin: "0px 0px -75% 0px" });
-  useEffect(() => {
-    if (isInView) {
-      appContext?.setIsSectionInView(true);
-    } else {
-      appContext?.setIsSectionInView(false);
-    }
-  }, [appContext, isInView]);
   return (
     <>
-      <Box h="30vh" bg="palette.secondary" ref={ref}>
-        <VStack
-          h="100%"
-          justify="end"
-          as={motion.div}
-          animate={{ opacity: 1, y: 0, transition: { duration: 0.4 } }}
-          initial={{ opacity: 0, y: -20 }}
-        >
-          <Center
-            zIndex={1}
-            fontFamily="inter"
-            flexDir="column"
-            fontSize="3rem"
-            fontWeight="bold"
-          >
-            <Text color="palette.gray">
-              <Highlight
-                query="Portfolio"
-                styles={{ color: "palette.primary" }}
-              >
-                My Portfolio
-              </Highlight>
-            </Text>
-          </Center>
-          <Text
-            color="palette.gray"
-            w="60%"
-            textAlign="center"
-            fontWeight="light"
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          </Text>
-        </VStack>
-      </Box>
-      <HomeWave />
       <Box
         w={breakPoints}
-        ref={ref2}
+        ref={ref}
         margin="auto"
+        paddingTop="8rem"
         paddingBottom="5rem"
         as={motion.div}
         animate={{ opacity: 1, y: 0, transition: { duration: 0.4 } }}
@@ -113,7 +70,7 @@ export default function Portfolio() {
             </Tab>
           </TabList>
 
-          <TabPanels paddingTop="2.6rem">
+          <TabPanels paddingTop="2rem">
             <TabPanel>
               <Slider />
             </TabPanel>

@@ -24,24 +24,6 @@ import { motion, useInView } from "framer-motion";
 
 export default function Contact() {
   const { ref } = useObserver("Contact");
-  const appContext = useApp();
-  const socials = [
-    { link: "", icon: <BsFacebook /> },
-    { link: "", icon: <BsTwitter /> },
-    { link: "", icon: <BsInstagram /> },
-  ];
-
-  const ref2 = useRef(null);
-  const isInView = useInView(ref2, { margin: "0px 0px -75% 0px" });
-
-  useEffect(() => {
-    if (isInView) {
-      appContext?.setIsSectionInView(true);
-    } else {
-      appContext?.setIsSectionInView(false);
-    }
-  }, [appContext, isInView]);
-
   const toast = useToast();
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
@@ -64,59 +46,9 @@ export default function Contact() {
 
   return (
     <>
-      <Box h="45vh" bg="palette.secondary" ref={ref}>
-        <VStack
-          h="100%"
-          justify="center"
-          as={motion.div}
-          animate={{ opacity: 1, y: 0, transition: { duration: 0.4 } }}
-          initial={{ opacity: 0, y: -20 }}
-        >
-          <Center
-            zIndex={1}
-            fontFamily="inter"
-            flexDir="column"
-            fontSize="3rem"
-            fontWeight="bold"
-          >
-            <Text color="palette.gray">
-              <Highlight
-                query="Portfolio"
-                styles={{ color: "palette.primary" }}
-              >
-                Contact Me
-              </Highlight>
-            </Text>
-          </Center>
-          <Text
-            color="palette.gray"
-            w="60%"
-            textAlign="center"
-            fontWeight="light"
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          </Text>
-          <HStack spacing="1.2rem" paddingTop="1rem">
-            {socials.map((social) => {
-              return (
-                <Link
-                  fontSize="1.25rem"
-                  color="palette.gray"
-                  key={social.link}
-                  href={social.link}
-                  target="_blank"
-                  _hover={{ color: "palette.primary" }}
-                >
-                  {social.icon}
-                </Link>
-              );
-            })}
-          </HStack>
-        </VStack>
-      </Box>
       <VStack
-        ref={ref2}
-        paddingBlock="5rem"
+        ref={ref}
+        paddingBlock="10rem"
         w={breakPoints}
         margin="auto"
         spacing="3rem"

@@ -46,11 +46,6 @@ function Navbar(props: NavItems): ReactElement {
       w="100%"
       pos="fixed"
       transition="all .1s ease"
-      bg={
-        appContext?.isSectionInView && appContext.activeNav !== "Home"
-          ? "palette.secondary"
-          : "transparent"
-      }
       backdropFilter={appContext?.scrolled ? "blur(15px)" : "none"}
       h={appContext?.scrolled ? "4rem" : "5rem"}
       boxShadow={appContext?.scrolled ? "0 0 10px rgba(0, 0, 0, .5)" : "none"}
@@ -69,7 +64,7 @@ function Navbar(props: NavItems): ReactElement {
         {/* LOGO */}
         <Link href="/" as={motion.a} variants={item}>
           <Image
-            src={appContext?.activeNav === "Home" ? logo_dark : logo}
+            src={logo_dark}
             alt="logo"
             width={500}
             height={500}
