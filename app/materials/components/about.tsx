@@ -86,7 +86,7 @@ export default function About() {
               height={500}
               style={{ width: "100%" }}
             />
-            <Box
+            {/* <Box
               pos="absolute"
               bg="white"
               p=".6rem"
@@ -104,7 +104,7 @@ export default function About() {
                 height={500}
                 style={{ width: "100%" }}
               />
-            </Box>
+            </Box> */}
           </Box>
         </Center>
         <Center flex={1} flexDir="column">
