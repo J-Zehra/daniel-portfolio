@@ -45,27 +45,6 @@ export default function About() {
       animate={{ opacity: 1, y: 0, transition: { duration: 0.4 } }}
       initial={{ opacity: 0, y: -20 }}
     >
-      {/* <HStack align="start" spacing=".5rem" w="100%">
-        <Box
-          w="1.5rem"
-          h="2.5rem"
-          bg="palette.secondary"
-          borderRadius=".5rem"
-        />
-        <VStack align="start" justify="start" spacing="0rem">
-          <Text
-            fontSize={{ base: "1.5rem", md: "2rem" }}
-            fontFamily="inter"
-            fontWeight="bold"
-            color="palette.secondary"
-          >
-            About
-          </Text>
-          <Text opacity=".8" fontSize={{ base: ".9rem", md: "1.1rem" }}>
-            Get to know me.
-          </Text>
-        </VStack>
-      </HStack> */}
       <Stack
         w="100%"
         direction={{ base: "column", md: "row" }}
@@ -86,25 +65,6 @@ export default function About() {
               height={500}
               style={{ width: "100%" }}
             />
-            {/* <Box
-              pos="absolute"
-              bg="white"
-              p=".6rem"
-              borderRadius=".3rem"
-              bottom="0"
-              left="0"
-              w="6rem"
-              h="6rem"
-              boxShadow="3px 3px 15px rgba(0, 0, 0, .6)"
-            >
-              <Image
-                src="/assets/QR_code.svg"
-                alt="Profile Pic"
-                width={500}
-                height={500}
-                style={{ width: "100%" }}
-              />
-            </Box> */}
           </Box>
         </Center>
         <Center flex={1} flexDir="column">

@@ -41,7 +41,11 @@ export default function MobileMenu({
           <VStack spacing="1.2rem" paddingBottom="1rem">
             {navLinks.map((nav) => {
               return (
-                <Link href={nav.toLowerCase()} onClick={onClose} key={nav}>
+                <Link
+                  href={nav === "Home" ? "/" : nav.toLowerCase()}
+                  onClick={onClose}
+                  key={nav}
+                >
                   {nav}
                 </Link>
               );

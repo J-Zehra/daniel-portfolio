@@ -65,7 +65,7 @@ function Navbar(props: NavItems): ReactElement {
         <Link href="/" as={motion.a} variants={item}>
           <HStack>
             <Image
-              src={logo_dark}
+              src={appContext?.activeNav === "Shop" ? logo : logo_dark}
               alt="logo"
               width={500}
               height={500}
@@ -83,9 +83,9 @@ function Navbar(props: NavItems): ReactElement {
             variants={item}
             fontSize="1.8rem"
             color={
-              appContext?.activeNav === "Home"
-                ? "palette.secondary"
-                : "palette.primary"
+              appContext?.activeNav === "Shop"
+                ? "palette.primary"
+                : "palette.secondary"
             }
             onClick={onOpen}
           >
