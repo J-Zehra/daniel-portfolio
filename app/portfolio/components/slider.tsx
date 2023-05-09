@@ -6,9 +6,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 // import required modules
-import { EffectCoverflow, Pagination } from "swiper";
+import { EffectCoverflow, Navigation, Pagination } from "swiper";
 import Image from "next/image";
 import {
   AspectRatio,
@@ -17,14 +18,17 @@ import {
   HStack,
   Skeleton,
   Text,
+  Tooltip,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { useQuery } from "react-query";
 import client from "@/client";
+import ReactCardFlip from "react-card-flip";
 
 export default function Slider() {
   const itemCount = 10;
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [isFlipped, setIsFlipped] = useState<number>(-1);
 
   const getArtworks = async () => {
     const data = await client.fetch(
@@ -49,7 +53,14 @@ export default function Slider() {
   console.log(artworks);
 
   return (
-    <Center pos="relative">
+    <Center
+      pos="relative"
+      sx={{
+        ".swiper-button-next, .swiper-button-prev": {
+          color: "palette.secondary",
+        },
+      }}
+    >
       <Swiper
         effect={"coverflow"}
         grabCursor={true}
@@ -74,50 +85,79 @@ export default function Slider() {
         onSlideChange={(swiper) => {
           setActiveIndex(swiper.activeIndex);
         }}
+        navigation
+        centeredSlides={true}
         style={{ padding: "1rem" }}
-        modules={[EffectCoverflow, Pagination]}
+        modules={[EffectCoverflow, Pagination, Navigation]}
       >
         {artworks?.map((item, index) => {
           return (
             <SwiperSlide key={index}>
               <Skeleton isLoaded={!isFetching && !isLoading}>
                 <AspectRatio ratio={2 / 3} w="20rem">
-                  <Center
-                    flexDir="column"
-                    // justifyContent="space-between"
-                    w="20rem"
-                    borderRadius=".5rem"
-                    h="30rem"
+                  <ReactCardFlip
+                    isFlipped={isFlipped === index}
+                    flipDirection="horizontal"
                   >
-                    <Text
+                    <Tooltip label="Flip!" cursor="pointer" placement="top">
+                      <Center
+                        flexDir="column"
+                        // justifyContent="space-between"
+                        w="20rem"
+                        borderRadius=".5rem"
+                        h="30rem"
+                        onClick={() => setIsFlipped(index)}
+                      >
+                        <Text
+                          bg="palette.secondary"
+                          textAlign="center"
+                          fontFamily="Akira"
+                          p="1.2rem"
+                          borderTopRadius=".5rem"
+                          fontSize="1.2rem"
+                          fontWeight="semibold"
+                          w="100%"
+                          h="15%"
+                          color="palette.primary"
+                        >
+                          {item.name}
+                        </Text>
+                        <Box w="100%" h="85%">
+                          <Image
+                            src={item.artwork_image.asset.url}
+                            alt="Sample Work"
+                            width={500}
+                            height={500}
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                              borderBottomLeftRadius: ".5rem",
+                              borderBottomRightRadius: ".5rem",
+                            }}
+                          />
+                        </Box>
+                      </Center>
+                    </Tooltip>
+                    <Center
+                      flexDir="column"
+                      // justifyContent="space-between"
+                      w="20rem"
+                      borderRadius=".5rem"
+                      h="30rem"
                       bg="palette.secondary"
-                      textAlign="center"
-                      fontFamily="inter"
-                      p="1.2rem"
-                      borderTopRadius=".5rem"
-                      fontSize="1.2rem"
-                      fontWeight="semibold"
-                      w="100%"
-                      h="15%"
-                      color="palette.primary"
+                      onClick={() => setIsFlipped(-1)}
                     >
-                      {item.name}
-                    </Text>
-                    <Box w="100%" h="85%">
-                      <Image
-                        src={item.artwork_image.asset.url}
-                        alt="Sample Work"
-                        width={500}
-                        height={500}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          borderBottomLeftRadius: ".5rem",
-                          borderBottomRightRadius: ".5rem",
-                        }}
-                      />
-                    </Box>
-                  </Center>
+                      <Text
+                        textAlign="center"
+                        fontFamily="inter"
+                        fontSize="1.2rem"
+                        fontWeight="semibold"
+                        color="palette.primary"
+                      >
+                        {item.name}
+                      </Text>
+                    </Center>
+                  </ReactCardFlip>
                 </AspectRatio>
               </Skeleton>
             </SwiperSlide>
@@ -125,7 +165,7 @@ export default function Slider() {
         })}
       </Swiper>
       <HStack pos="absolute" bottom="-2rem" spacing=".8rem">
-        {[...Array(artworks && artworks?.length - 1)].map((_, index) => {
+        {[...Array(artworks && artworks?.length)].map((_, index) => {
           return activeIndex === index ? (
             <Box
               as={motion.div}
