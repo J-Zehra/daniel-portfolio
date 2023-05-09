@@ -71,7 +71,16 @@ function Navbar(props: NavItems): ReactElement {
               height={500}
               style={{ width: "2.5rem" }}
             />
-            <Text fontFamily="Mostera" fontWeight="bold" fontSize="1.5rem">
+            <Text
+              fontFamily="Mostera"
+              color={
+                appContext?.activeNav === "Shop"
+                  ? "palette.primary"
+                  : "palette.secondary"
+              }
+              fontWeight="bold"
+              fontSize="1.5rem"
+            >
               Daniel Serra
             </Text>
           </HStack>

@@ -29,7 +29,11 @@ function NavLink(props: NavLinkProps) {
             animate={{ x: 0, opacity: 1 }}
           >
             <Image
-              src="/assets/star(black).svg"
+              src={
+                appContext.activeNav === "Shop"
+                  ? "/assets/star.svg"
+                  : "/assets/star(black).svg"
+              }
               alt="Star"
               width={500}
               height={500}
@@ -45,7 +49,9 @@ function NavLink(props: NavLinkProps) {
           pos="relative"
           fontWeight="normal"
           color={
-            appContext?.activeNav === nav
+            appContext?.activeNav === "Shop"
+              ? "palette.primary"
+              : appContext?.activeNav === nav
               ? "palette.secondary"
               : "palette.secondary_hover"
           }
