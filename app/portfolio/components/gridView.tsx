@@ -1,18 +1,22 @@
+import useApp from "@/app/materials/hooks/useApp";
 import client from "@/client";
 import { Box, Center, Skeleton, Text, Wrap, WrapItem } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import ReactCardFlip from "react-card-flip";
 import { useQuery } from "react-query";
 
 export default function GridView() {
-  const itemCount = 10;
+  const appContext = useApp();
+  const [isFlipped, setIsFlipped] = useState<number>(-1);
 
   const getArtworks = async () => {
     const data = await client.fetch(
-      `*[_type == "artworks"]{ 
+      `*[_type == "artworks" && category == "${appContext?.category}"]{ 
         _id,
-        name,
+        artwork_name,
+        description,
         artwork_image { asset -> {url} }
       }`
     );
@@ -24,7 +28,7 @@ export default function GridView() {
     isFetching,
     isLoading,
   } = useQuery({
-    queryKey: ["artworks"],
+    queryKey: ["artworks", appContext?.category],
     queryFn: getArtworks,
   });
 
@@ -33,45 +37,71 @@ export default function GridView() {
       {artworks?.map((item, index) => {
         return (
           <WrapItem key={index}>
-            <Skeleton isLoaded={!isFetching && !isLoading}></Skeleton>
-            <Center
-              as={motion.div}
-              whileHover={{ scale: 1.01 }}
-              flexDir="column"
-              // justifyContent="space-between"
-              w="20rem"
-              borderRadius=".5rem"
-              h="30rem"
-            >
-              <Text
-                bg="palette.secondary"
-                textAlign="center"
-                fontFamily="inter"
-                p="1.2rem"
-                borderTopRadius=".5rem"
-                fontSize="1.2rem"
-                fontWeight="semibold"
-                w="100%"
-                h="15%"
-                color="palette.primary"
+            <Skeleton isLoaded={!isFetching && !isLoading}>
+              <ReactCardFlip
+                isFlipped={isFlipped === index}
+                flipDirection="horizontal"
               >
-                {item.name}
-              </Text>
-              <Box w="100%" h="85%">
-                <Image
-                  src={item.artwork_image.asset.url}
-                  alt="Sample Work"
-                  width={500}
-                  height={500}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    borderBottomLeftRadius: ".5rem",
-                    borderBottomRightRadius: ".5rem",
-                  }}
-                />
-              </Box>
-            </Center>
+                <Center
+                  // as={motion.div}
+                  // whileHover={{ scale: 1.01 }}
+                  flexDir="column"
+                  // justifyContent="space-between"
+                  w="20rem"
+                  borderRadius=".5rem"
+                  h="30rem"
+                  onClick={() => setIsFlipped(index)}
+                >
+                  <Text
+                    bg="palette.secondary"
+                    textAlign="center"
+                    fontFamily="inter"
+                    p="1.2rem"
+                    borderTopRadius=".5rem"
+                    fontSize="1.2rem"
+                    fontWeight="semibold"
+                    w="100%"
+                    h="15%"
+                    color="palette.primary"
+                  >
+                    {item.artwork_name}
+                  </Text>
+                  <Box w="100%" h="85%">
+                    <Image
+                      src={item.artwork_image.asset.url}
+                      alt="Sample Work"
+                      width={500}
+                      height={500}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        borderBottomLeftRadius: ".5rem",
+                        borderBottomRightRadius: ".5rem",
+                      }}
+                    />
+                  </Box>
+                </Center>
+                <Center
+                  flexDir="column"
+                  // justifyContent="space-between"
+                  w="20rem"
+                  borderRadius=".5rem"
+                  h="30rem"
+                  bg="palette.secondary"
+                  onClick={() => setIsFlipped(-1)}
+                >
+                  <Text
+                    textAlign="center"
+                    fontFamily="inter"
+                    fontSize="1rem"
+                    fontWeight="medium"
+                    color="palette.primary"
+                  >
+                    {item.description}
+                  </Text>
+                </Center>
+              </ReactCardFlip>
+            </Skeleton>
           </WrapItem>
         );
       })}

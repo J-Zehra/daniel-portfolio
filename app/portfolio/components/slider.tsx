@@ -24,17 +24,20 @@ import { motion } from "framer-motion";
 import { useQuery } from "react-query";
 import client from "@/client";
 import ReactCardFlip from "react-card-flip";
+import useApp from "@/app/materials/hooks/useApp";
 
 export default function Slider() {
   const itemCount = 10;
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [isFlipped, setIsFlipped] = useState<number>(-1);
+  const appContext = useApp();
 
   const getArtworks = async () => {
     const data = await client.fetch(
-      `*[_type == "artworks"]{ 
+      `*[_type == "artworks" && category == "${appContext?.category}"]{ 
         _id,
-        name,
+        artwork_name,
+        description,
         artwork_image { asset -> {url} }
       }`
     );
@@ -46,7 +49,7 @@ export default function Slider() {
     isFetching,
     isLoading,
   } = useQuery({
-    queryKey: ["artworks"],
+    queryKey: ["artworks", appContext?.category],
     queryFn: getArtworks,
   });
 
@@ -120,7 +123,7 @@ export default function Slider() {
                           h="15%"
                           color="palette.primary"
                         >
-                          {item.name}
+                          {item.artwork_name}
                         </Text>
                         <Box w="100%" h="85%">
                           <Image
@@ -150,11 +153,11 @@ export default function Slider() {
                       <Text
                         textAlign="center"
                         fontFamily="inter"
-                        fontSize="1.2rem"
-                        fontWeight="semibold"
+                        fontSize="1rem"
+                        fontWeight="medium"
                         color="palette.primary"
                       >
-                        {item.name}
+                        {item.description}
                       </Text>
                     </Center>
                   </ReactCardFlip>

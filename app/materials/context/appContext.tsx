@@ -8,6 +8,7 @@ function AppContext({ children }: { children: React.ReactNode }) {
   // INITIALIZE A STATE TO TRACK IF THE PAGE IS SCROLLED
   const [scrolled, setScrolled] = useState<boolean>(false);
   const [isSectionInView, setIsSectionInView] = useState<boolean>(false);
+  const [category, setCategory] = useState<string>("Sisters of Demise");
 
   // HANDLE THE SCROLL EVENT. CHANGE VARIABLES WHEN SCROLLED
   const handleScroll = () => {
@@ -30,9 +31,11 @@ function AppContext({ children }: { children: React.ReactNode }) {
       setActiveNav,
       isSectionInView,
       setIsSectionInView,
+      category,
+      setCategory,
     };
     return items;
-  }, [activeNav, isSectionInView, scrolled]);
+  }, [activeNav, category, isSectionInView, scrolled]);
 
   return (
     <ApplicationContext.Provider value={values}>

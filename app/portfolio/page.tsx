@@ -5,6 +5,7 @@ import {
   Center,
   Grid,
   Highlight,
+  Select,
   Tab,
   TabList,
   TabPanel,
@@ -24,11 +25,32 @@ import GridView from "./components/gridView";
 import useApp from "../materials/hooks/useApp";
 import { useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import client from "@/client";
+import { useQuery } from "react-query";
 
 export default function Portfolio() {
   const { ref } = useObserver("Portfolio");
 
   const appContext = useApp();
+
+  const getCategories = async () => {
+    const data = await client.fetch(
+      `*[_type == "categories"]{ 
+        _id,
+        category_name,
+      }`
+    );
+    return data as Categories[];
+  };
+
+  const {
+    data: categories,
+    isFetching,
+    isLoading,
+  } = useQuery({
+    queryKey: ["categories"],
+    queryFn: getCategories,
+  });
 
   return (
     <>
@@ -69,7 +91,25 @@ export default function Portfolio() {
               <BsFillGridFill />
             </Tab>
           </TabList>
-
+          <Box paddingTop="2rem">
+            <Select
+              focusBorderColor="palette.secondary"
+              w="15rem"
+              fontFamily="inter"
+              onChange={(e) => appContext?.setCategory(e.target.value)}
+            >
+              <option value="Select Category" disabled>
+                Select Category
+              </option>
+              {categories?.map((category) => {
+                return (
+                  <option key={category._id} value={category.category_name}>
+                    {category.category_name}
+                  </option>
+                );
+              })}
+            </Select>
+          </Box>
           <TabPanels paddingTop="2rem">
             <TabPanel>
               <Slider />
