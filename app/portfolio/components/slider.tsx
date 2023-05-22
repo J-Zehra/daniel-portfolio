@@ -33,14 +33,28 @@ export default function Slider() {
   const appContext = useApp();
 
   const getArtworks = async () => {
-    const data = await client.fetch(
-      `*[_type == "artworks" && category == "${appContext?.category}"]{ 
-        _id,
-        artwork_name,
-        description,
-        artwork_image { asset -> {url} }
-      }`
-    );
+    let data: Artworks[] = [];
+
+    if (appContext?.category === "All") {
+      data = await client.fetch(
+        `*[_type == "artworks"]{ 
+          _id,
+          artwork_name,
+          description,
+          artwork_image { asset -> {url} }
+        }`
+      );
+    } else {
+      data = await client.fetch(
+        `*[_type == "artworks" && category == "${appContext?.category}"]{ 
+          _id,
+          artwork_name,
+          description,
+          artwork_image { asset -> {url} }
+        }`
+      );
+    }
+
     return data as Artworks[];
   };
 
@@ -96,7 +110,7 @@ export default function Slider() {
         {artworks?.map((item, index) => {
           return (
             <SwiperSlide key={index}>
-              <Skeleton isLoaded={!isFetching && !isLoading}>
+              <Skeleton isLoaded={!isFetching}>
                 <AspectRatio ratio={2 / 3} w="20rem">
                   <ReactCardFlip
                     isFlipped={isFlipped === index}
@@ -108,7 +122,7 @@ export default function Slider() {
                         // justifyContent="space-between"
                         w="20rem"
                         borderRadius=".5rem"
-                        h="30rem"
+                        h="25rem"
                         onClick={() => setIsFlipped(index)}
                       >
                         <Text
@@ -146,7 +160,8 @@ export default function Slider() {
                       // justifyContent="space-between"
                       w="20rem"
                       borderRadius=".5rem"
-                      h="30rem"
+                      h="25rem"
+                      p="1.5rem"
                       bg="palette.secondary"
                       onClick={() => setIsFlipped(-1)}
                     >

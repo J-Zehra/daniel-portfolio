@@ -8,7 +8,7 @@ function AppContext({ children }: { children: React.ReactNode }) {
   // INITIALIZE A STATE TO TRACK IF THE PAGE IS SCROLLED
   const [scrolled, setScrolled] = useState<boolean>(false);
   const [isSectionInView, setIsSectionInView] = useState<boolean>(false);
-  const [category, setCategory] = useState<string>("Sisters of Demise");
+  const [category, setCategory] = useState<string>("All");
 
   // HANDLE THE SCROLL EVENT. CHANGE VARIABLES WHEN SCROLLED
   const handleScroll = () => {

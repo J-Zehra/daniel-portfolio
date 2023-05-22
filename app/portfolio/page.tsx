@@ -93,14 +93,13 @@ export default function Portfolio() {
           </TabList>
           <Box paddingTop="2rem">
             <Select
-              focusBorderColor="palette.secondary"
+              borderColor="#6A6A6A"
+              focusBorderColor="#595959"
               w="15rem"
               fontFamily="inter"
               onChange={(e) => appContext?.setCategory(e.target.value)}
             >
-              <option value="Select Category" disabled>
-                Select Category
-              </option>
+              <option value="All">All</option>
               {categories?.map((category) => {
                 return (
                   <option key={category._id} value={category.category_name}>

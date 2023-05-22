@@ -12,14 +12,28 @@ export default function GridView() {
   const [isFlipped, setIsFlipped] = useState<number>(-1);
 
   const getArtworks = async () => {
-    const data = await client.fetch(
-      `*[_type == "artworks" && category == "${appContext?.category}"]{ 
-        _id,
-        artwork_name,
-        description,
-        artwork_image { asset -> {url} }
-      }`
-    );
+    let data: Artworks[] = [];
+
+    if (appContext?.category === "All") {
+      data = await client.fetch(
+        `*[_type == "artworks"]{ 
+          _id,
+          artwork_name,
+          description,
+          artwork_image { asset -> {url} }
+        }`
+      );
+    } else {
+      data = await client.fetch(
+        `*[_type == "artworks" && category == "${appContext?.category}"]{ 
+          _id,
+          artwork_name,
+          description,
+          artwork_image { asset -> {url} }
+        }`
+      );
+    }
+
     return data as Artworks[];
   };
 
@@ -37,7 +51,7 @@ export default function GridView() {
       {artworks?.map((item, index) => {
         return (
           <WrapItem key={index}>
-            <Skeleton isLoaded={!isFetching && !isLoading}>
+            <Skeleton isLoaded={!isFetching}>
               <ReactCardFlip
                 isFlipped={isFlipped === index}
                 flipDirection="horizontal"
@@ -49,7 +63,7 @@ export default function GridView() {
                   // justifyContent="space-between"
                   w="20rem"
                   borderRadius=".5rem"
-                  h="30rem"
+                  h="25rem"
                   onClick={() => setIsFlipped(index)}
                 >
                   <Text
@@ -86,7 +100,8 @@ export default function GridView() {
                   // justifyContent="space-between"
                   w="20rem"
                   borderRadius=".5rem"
-                  h="30rem"
+                  h="25rem"
+                  p="1.5rem"
                   bg="palette.secondary"
                   onClick={() => setIsFlipped(-1)}
                 >
