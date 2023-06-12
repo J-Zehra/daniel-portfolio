@@ -69,7 +69,7 @@ export default function GridView() {
                   <Text
                     bg="palette.secondary"
                     textAlign="center"
-                    fontFamily="inter"
+                    fontFamily="Akira"
                     p="1.2rem"
                     borderTopRadius=".5rem"
                     fontSize="1.2rem"
